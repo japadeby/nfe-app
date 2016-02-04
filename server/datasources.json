@@ -1,0 +1,15 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mongolab": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "nfe",
+    "password": "",
+    "name": "mongolab",
+    "connector": "mongodb",
+    "user": ""
+  }
+}

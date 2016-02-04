@@ -1,0 +1,16 @@
+/* Empty. Add your own CSS if you like */
+
+#barCode{
+    width: 5em;
+    height: auto;
+    stroke: #444;
+    fill: #444;
+}
+
+#tableNfeDetail{
+  width:100%;
+}
+
+#tableNfeDetail tbody td:nth-child(n+3){
+  text-align: right;
+}

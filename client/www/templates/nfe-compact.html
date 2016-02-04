@@ -1,0 +1,48 @@
+<ion-view view-title="{{nfe.source}}">
+  <ion-content>
+    <div ng-show="!nfe">
+      <div layout="row" layout-sm="column" layout-align="space-around">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+      </div>
+    </div>
+    <div  class="card" ng-show="nfe">
+      <div class="item item-divider">
+        Estabelecimento:
+        <small>{{nfe.data.target.fantasy}}</small>
+      </div>
+
+      <div class="item item-text-wrap">
+        <p><strong>Total: </strong>{{nfe.data.info.total}}</p>
+      </div>
+      <div class="item item-text-wrap">
+        <p><small><strong>Data: </strong>{{nfe.data.info.emission_date}}</small></p>
+        <p><small><strong>Telefone: </strong>{{nfe.data.target.address.phone}}</small></p>
+      </div>
+      <!--
+
+
+      -->
+      <div class="item item-divider">
+        Produtos
+      </div>
+      <div class="item item-text-wrap">
+      <!-- *inserir ainda*
+      MOSTRAR OS PRODUCTS AO CLICAR NUM BOTÃO "onclick(showProd());"
+      -->
+        <div ng-repeat="i in nfe.data.order">
+          <p><small><strong>Nome: </strong>{{i.product.name}}</small></p>
+
+          <!--TRABALHA COM ÍNDICE -->
+          <!--small><strong>Taxas: </strong>R${{nfe.data.total_icms.tax}}</small><br-->
+          <p><small><strong>Qtde: </strong>{{i.product.quantity}}</small>/tUnidade: {{i.product.unity}}</t></p>
+          <p><small><strong>Preço: </strong>R${{nfe.data.total_icms.price}}</small></p><br>
+        </div>
+      </div>
+      <div class="item item-divider">
+        <small><strong>Número de NFe:</strong><br>
+        <small>{{nfe.data.chaveNFe}}</small></small>
+      </div>
+    </div>
+    <button class="button icon-left ion-chevron-left" href="#/app/">
+  </ion-content>
+</ion-view>

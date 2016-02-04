@@ -1,0 +1,21 @@
+<ion-view view-title="Notas Fiscais">
+
+  <ion-content>
+    <!-- TODO group card by month -->
+    <div>
+      <div class="card" ng-repeat="nfe in nfes" ui-sref="app.nfe-detail({nfeId: nfe.id})">
+        <div class="item item-text-wrap item-icon-right">
+          <!-- TODO colocar #ID -->
+          <h2 class="origin">{{nfe.source}}</h2>
+          <p class="price">{{nfe.data.info.total | currency}}</p>
+          <p class="date">{{nfe.data.info.emission_date | date : 'dd/MM/yyyy'}}</p>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar>
+    <p><b>Notas:</b> {{ total()[0] }} <b>Total:</b> {{ total()[1] | currency}}<p>
+    <a href="#/app/nfes" ng-click="scan()" style="position: fixed; right: 30px; bottom: 50px;"><img src="img/code.svg" alt="" id="barCode"></a>
+  </ion-footer-bar>
+</ion-view>

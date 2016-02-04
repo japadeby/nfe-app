@@ -1,0 +1,15 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mongolab": {
+    "host": "ds047692.mongolab.com",
+    "port": 47692,
+    "database": "nfe",
+    "password": "ifpb1234",
+    "name": "mongolab",
+    "connector": "mongodb",
+    "user": "ifpb"
+  }
+}

@@ -1,0 +1,108 @@
+<ion-view view-title="Notas Fiscal">
+
+  <ion-content>
+    <div class="list list-inset">
+
+        <div class="item" style="text-align:center">
+            <div class="row">
+              <div class="col">
+                <h3 style="white-space: normal">{{nfe.source}}</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p style="white-space: normal">CNPJ: {{nfe.data.source.id}} IE: {{nfe.data.source.ie}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p style="white-space: normal">
+                  {{nfe.data.source.address.street}},
+                  {{nfe.data.source.address.neighbourhood}},
+                  {{nfe.data.source.address.name_city}},
+                  {{nfe.data.source.address.uf}}
+                </p>
+              </div>
+            </div>
+        </div>
+
+        <div class="item" style="text-align:center">
+          <div class="row">
+            <div class="col">
+              <p style="white-space: normal">DANFE NFC-e Documento Auxiliar da Nota Fiscal de Consumidor Eletrônica</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div>
+            <p style="white-space: normal" class="row">Código Descrição Qtde UN Vl Unit Vl Total</p>
+            <p style="white-space: normal;text-indent:-25px;padding-left:25px" class="row" ng-repeat="item in nfe.data.order">
+              {{$index+1}}
+              {{item.product.code}}
+              {{item.product.name}}
+              {{item.product.quantity | number}}
+              {{item.product.unity}}
+              {{item.product.price/item.product.quantity | currency}}
+              {{item.product.price | currency }}
+            </p>
+          </div>
+        </div>
+        <div class="item" style="text-align:center">
+          <div class="row">
+            <div class="col">
+              <p style="white-space: normal">Inf. dos Tributos Totais Incidentes (Lei Federal 12.741/2012):
+                {{ nfe.data.total_icms.tax | currency }}
+                ({{ (nfe.data.total_icms.tax/nfe.data.info.total)*100 |number:1 }}%)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+            <div class="row" style="padding:0px">
+              <div class="col" style="padding:0px">
+                <p style="white-space: normal;display:inline-block">Qtd. Total de Itens:</p>
+                <p style="white-space: normal;display:inline-block;float:right">{{ nfe.data.order.length }}</p>
+              </div>
+            </div>
+            <div class="row" style="padding:0px">
+              <div class="col" style="padding:0px">
+                <p style="white-space: normal;display:inline-block">Valor Total:</p>
+                <p style="white-space: normal;display:inline-block;float:right">{{nfe.data.info.total | currency}}</p>
+              </div>
+            </div>
+            <div class="row" style="padding:0px">
+              <div class="col" style="padding:0px">
+                <p style="white-space: normal;display:inline-block">Forma de Pagamento:</p>
+                <p style="white-space: normal;display:inline-block;float:right">{{ nfe.data.payment_method }}</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="row">
+              <div class="col">
+                <p style="white-space: normal">
+                  Número: {{nfe.data.info.number}}
+                  Série: {{nfe.data.info.serie}}<br>
+                  Data de emissão: {{nfe.data.info.emission_date | date: 'dd/MM/yyyy HH:mm:ss'}}
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <!-- TODO slice recursive by 4 -->
+                <p style="white-space: normal">Chave de acesso: <br> {{nfe.key}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p style="white-space: normal">Consumidor(CPF/CNPJ/ID Est): <br> {{ nfe.target }}</p>
+              </div>
+            </div>
+        </div>
+    </div>
+  </ion-content>
+
+</ion-view>
