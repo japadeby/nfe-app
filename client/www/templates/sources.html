@@ -1,0 +1,43 @@
+<ion-view view-title="Origem das Notas">
+
+  <ion-content>
+    <!-- TODO group card by month -->
+    <div>
+      <!-- | orderObjectBy:'total':true -->
+      <div class="card" ng-repeat="(key, source) in sources | orderObjectBy:'name'"  ui-sref="app.source-list({sourceId: source.id})">
+        <div class="item item-text-wrap item-icon-right">
+          <h2>{{$index+1}} - {{source.name}}</h2>
+          <div class="row">
+            <div class="col col-75">
+              <p>{{source.id}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-30">
+              <p>Notas: {{source.count}}</p>
+            </div>
+            <div class="col" style="text-align:right">
+              <p>{{source.total|currency}} ({{source.total/sources_total*100|number:0}}%)</p>
+            </div>
+          </div>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar>
+    <div class="row" style="padding:0px">
+      <div class="col col-25" style="padding:0px">
+        <p><b>Notas:</b><br>{{ sources_count }}</p>
+      </div>
+      <div class="col col-33" style="padding:0px">
+        <p>
+          <b>Empresas:</b><br>{{ sources_size }}
+        </p>
+      </div>
+      <div class="col col-33" style="padding:0px">
+        <p><b>Total:</b><br>{{ sources_total | currency}}</p>
+      </div>
+    </div>
+  </ion-footer-bar>
+</ion-view>

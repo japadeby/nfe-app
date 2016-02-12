@@ -1,0 +1,8 @@
+<ion-view view-title="{{title}}">
+  <ion-content>
+    <div class="item item-text-wrap" ng-repeat="(name, product) in products | orderObjectBy:'total':true">
+      <h2>{{product.name}}</h2>
+      <p>{{product.count}} - {{product.quantity | number:1}} {{product.unity}} - {{product.total |currency}}</p>
+  </div>
+  </ion-content>
+</ion-view>

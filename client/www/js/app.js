@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'lbServices', 'ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'lbServices', 'ngCordova', 'angular.filter'])
 
 .run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
@@ -13,8 +13,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 })
 
 .constant('config', {
-    urlBase: "http://10.0.1.6:3000"
-    // urlBase:  "http://192.168.100.103:3000"
+    // urlBase: "http://10.0.1.6:3000"
+    // urlBase: "http://192.168.159.108:3000"
+    // urlBase:  "http://192.168.100.102:3000"
+    urlBase:  "http://192.168.0.107:3000"
     // urlBase:  "http://localhost:3000"
 })
 
@@ -35,6 +37,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       'menuNFes': {
         templateUrl: 'templates/nfes.html',
         controller: 'NFeCtrl'
+      }
+    }
+  })
+
+  .state('app.sources', {
+    url: '/sources',
+    views: {
+      'menuNFes': {
+        templateUrl: 'templates/sources.html',
+        controller: 'NFeSourcesCtrl'
+      }
+    }
+  })
+
+  .state('app.source-list', {
+    url: '/sources/:sourceId',
+    views: {
+      'menuNFes': {
+        templateUrl: 'templates/nfes-source.html',
+        controller: 'NFeSourcesListCtrl'
+      }
+    }
+  })
+
+  .state('app.nfe-products', {
+    url: '/nfe-products',
+    views: {
+      'menuNFes': {
+        templateUrl: 'templates/nfe-products.html',
+        controller: 'NFeProductsCtrl'
       }
     }
   })

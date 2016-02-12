@@ -1,0 +1,182 @@
+# 1
+ICMS Normal e ST
+Origem da Mercadoria (origem)
+	0 - Nacional
+Código de Situação da Operação - Simples Nacional (csosn)
+	102 - Tributada pelo Simples Nacional sem permissão de crédito
+
+# 2
+ICMS Normal e ST
+Origem da Mercadoria (origem)
+	0 - Nacional
+Tributação do ICMS (cst)
+	00 - Tributada integralmente 
+Modalidade Definição da BC ICMS NORMAL (modBC)
+	3 - Valor da Operação
+Base de Cálculo do ICMS Normal (vBC)
+	6,10
+Alíquota do ICMS Normal (pICMS)
+	17,0000
+Valor do ICMS Normal (vICMS)
+	1,04
+
+#3
+ICMS Normal e ST
+Origem da Mercadoria (origem)
+	0 - Nacional
+Tributação do ICMS (cst)
+	00 - Tributada integralmente
+Modalidade Definição da BC ICMS NORMAL (modBC)
+	3 - Valor da Operação
+Base de Cálculo do ICMS Normal (vBC)
+	0,01
+Alíquota do ICMS Normal (pICMS)
+	17,0000
+Valor do ICMS Normal (vICMS)
+	0,00
+PIS
+CST (cst)
+	01 - Operação Tributável (base de cálculo = valor da operação alíquota normal (cumulativo/não cumulativo))
+Base de Cálculo (vBC)
+	0,01
+Alíquota (pPIS)
+	0,0000
+Valor (vPIS)
+	0,00
+COFINS
+CST (cst)
+	01 - Operação Tributável (base de cálculo = valor da operação alíquota normal (cumulativo/não cumulativo))
+Base de Cálculo (vBC)
+	0,01
+Alíquota (pCOFINS)
+	0,0000
+Valor (vCOFINS)
+	0,00
+
+#4
+ICMS Normal e ST
+Origem da Mercadoria (origem)
+	0 - Nacional
+Tributação do ICMS (cst)
+	40 - Isenta
+Valor ICMS desoneração (vICMSDeson)
+
+PIS
+CST
+	08 - Operação Sem Incidência da Contribuição
+COFINS
+CST
+	08 - Operação Sem Incidência da Contribuição
+
+#4.1
+ICMS Normal e ST (origem)
+Origem da Mercadoria
+	0 - Nacional
+Tributação do ICMS (cst)
+	40 - Isenta
+Valor ICMS desoneração (vICMSDeson)
+
+PIS
+CST
+	06 - Operação Tributável (alíquota zero)
+COFINS
+CST
+	06 - Operação Tributável (alíquota zero)
+
+
+#5
+ICMS Normal e ST
+Origem da Mercadoria (origem)
+	0 - Nacional
+Código de Situação da Operação (CSOSN)
+	500 - ICMS cobrado anteriormente por substituição tributária (substituído) ou por antecipação
+Valor da BC do ICMS ST retido (vBCSTRet)
+
+Valor do ICMS ST retido (vICMSSTRet)
+
+
+#6
+ICMS Normal e ST
+Origem da Mercadoria (origem)
+	0 - Nacional
+Código de Situação da Operação - Simples Nacional (csosn)
+	300 - Imune
+
+#7
+ICMS Normal e ST
+Origem da Mercadoria (origem)
+	0 - Nacional 
+Tributação do ICMS (cst)
+	60 - ICMS cobrado anteriormente por substituição tributária
+Valor da BC do ICMS ST retido (vBCSTRet)
+
+Valor do ICMS ST retido (vICMSSTRet)
+
+PIS
+CST
+	01 - Operação Tributável (base de cálculo = valor da operação alíquota normal (cumulativo/não cumulativo))
+Base de Cálculo
+	3,29
+Alíquota
+	1,6500
+Valor
+	0,05
+COFINS
+CST
+	01 - Operação Tributável (base de cálculo = valor da operação alíquota normal (cumulativo/não cumulativo))
+Base de Cálculo
+	3,29
+Alíquota
+	7,6000
+Valor
+	0,25
+
+#8
+ICMS Normal e ST
+Origem da Mercadoria
+	0 - Nacional
+Tributação do ICMS
+	00 - Tributada integralmente
+Modalidade Definição da BC ICMS NORMAL  (modBC)
+	3 - Valor da Operação
+Base de Cálculo do ICMS Normal
+	2,89
+Alíquota do ICMS Normal
+	17,0000
+Valor do ICMS Normal
+	0,49
+PIS
+CST
+	06 - Operação Tributável (alíquota zero)
+COFINS
+CST
+	06 - Operação Tributável (alíquota zero)
+
+#9
+ICMS Normal e ST
+Origem da Mercadoria
+	5 - Nacional, com Conteúdo de Importação inferior ou igual a 40%
+Tributação do ICMS
+	60 - ICMS cobrado anteriormente por substituição tributária
+Valor da BC do ICMS ST retido
+
+Valor do ICMS ST retido
+
+#10
+ICMS Normal e ST
+Origem da Mercadoria
+0 - Nacional
+Tributação do ICMS
+60 - ICMS cobrado anteriormente por substituição tributária
+Valor da BC do ICMS ST retido
+0,00
+Valor do ICMS ST retido
+0,00
+PIS
+CST
+08 - Operação Sem Incidência da Contribuição
+COFINS
+CST
+08 - Operação Sem Incidência da Contribuição
+
+

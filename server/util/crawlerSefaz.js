@@ -1,6 +1,15 @@
-var request = require('request');
-var cheerio = require('cheerio');
-var iconv  = require('iconv-lite');
+var request = require('request'),
+    cheerio = require('cheerio'),
+    iconv  = require('iconv-lite');
+
+var toFloat = function(number){
+  number = number.replace(',','.');
+  if(typeof Number(number) == 'number' && Number(number) != 0 && !isNaN(number)){
+    return parseFloat(number);
+  }else{
+    return 0;
+  }
+}
 
 function crawlerSefaz(id, callback){
   // TODO retry 5x and try connection error pool thread & CAPTCHA
@@ -44,14 +53,29 @@ function crawlerSefaz(id, callback){
       $('#Prod').find('.toggle.box').each(function(index){
          toggleBox = $('#Prod').find('.toggle.box');
          toggableBox = $('#Prod').find('.toggable.box');
+         icms = {
+           "origin": toggableBox.eq(index).find('span').eq(22).text(),
+           "kind": toggableBox.eq(index).find('span').eq(23).text()
+         };
+         pis = {};
+         cofins = {};
          products.push({
             item: index+1,
             product: {
                 "code": toggableBox.eq(index).find('span').eq(0).text(),
+                "ncm": toggableBox.eq(index).find('span').eq(1).text(),
+                "cfop": toggableBox.eq(index).find('span').eq(4).text(),
+                "discount": toggableBox.eq(index).find('span').eq(6).text(),
+                "ean": toggableBox.eq(index).find('span').eq(10).text(),
                 "name": toggleBox.eq(index).find('.fixo-prod-serv-descricao span').text(),
                 "unity": toggleBox.eq(index).find('.fixo-prod-serv-uc span').text(),
-                "quantity": parseFloat(toggleBox.eq(index).find('.fixo-prod-serv-qtd span').text().replace(',','.')),
-                "price": parseFloat(toggleBox.eq(index).find('.fixo-prod-serv-vb span').text().replace(',','.'))
+                "quantity": toFloat(toggleBox.eq(index).find('.fixo-prod-serv-qtd span').text()),
+                "price": toFloat(toggleBox.eq(index).find('.fixo-prod-serv-vb span').text()),
+                "tax":{
+                  "icms": icms,
+                  "pis": pis,
+                  "cofins": cofins
+                }
             }
           });
       });
@@ -63,13 +87,14 @@ function crawlerSefaz(id, callback){
           serie: $('#NFe').find('span').eq(1).text(),
           number: $('#NFe').find('span').eq(2).text(),
           emission_date: new Date($('#NFe').find('span').eq(3).text().replace(/(\d{2})\/(\d{2})/,"$2/$1")),
-          total: parseFloat($('#NFe').find('span').eq(5).text().replace(',','.'))
+          total: toFloat($('#NFe').find('span').eq(5).text())
         },
         'source':{
           name: $('#Emitente').find('span').eq(0).text().trim(),
           fantasy: $('#Emitente').find('span').eq(1).text(),
           id: $('#Emitente').find('span').eq(2).text(),
           ie: $('#Emitente').find('span').eq(10).text(),
+          crt: $('#Emitente').find('span').eq(15).text(),
           address: {
             street: $('#Emitente').find('span').eq(3).text().replace(/\s+/g,' ').trim(),
             neighbourhood: $('#Emitente').find('span').eq(4).text(),
@@ -96,12 +121,12 @@ function crawlerSefaz(id, callback){
         },
         'payment_method': $('#Cobranca').find('span').eq(0).text().trim().split(" - ")[1],
         'total_icms':{
-            icms_base: parseFloat($('#Totais').find('span').eq(0).text().replace(',','.')),
-            icms: parseFloat($('#Totais').find('span').eq(1).text().replace(',','.')),
-            ipi: parseFloat($('#Totais').find('span').eq(9).text().replace(',','.')),
-            pis: parseFloat($('#Totais').find('span').eq(13).text().replace(',','.')),
-            cofins: parseFloat($('#Totais').find('span').eq(14).text().replace(',','.')),
-            tax: parseFloat($('#Totais').find('span').eq(15).text().replace(',','.'))
+            icms_base: toFloat($('#Totais').find('span').eq(0).text()),
+            icms: toFloat($('#Totais').find('span').eq(1).text()),
+            ipi: toFloat($('#Totais').find('span').eq(9).text()),
+            pis: toFloat($('#Totais').find('span').eq(13).text()),
+            cofins: toFloat($('#Totais').find('span').eq(14).text()),
+            tax: toFloat($('#Totais').find('span').eq(15).text())
         },
         'transport':{
           kind: $('#Transporte').find('span').eq(0).text().trim().split(" - ")[1],

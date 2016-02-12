@@ -6,7 +6,7 @@
   "mongolab": {
     "host": "localhost",
     "port": 27017,
-    "database": "nfe",
+    "database": "nfe2",
     "password": "",
     "name": "mongolab",
     "connector": "mongodb",
