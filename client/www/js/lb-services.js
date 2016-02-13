@@ -1134,7 +1134,7 @@ module.factory(
   ['LoopBackResource', 'LoopBackAuth', '$injector', 'config', function(Resource, LoopBackAuth, $injector, config) {
     var urlBase = config.urlBase+'/api';
     var R = Resource(
-      urlBase + "/nves/:id",
+      urlBase + "/nfes/:id",
       { 'id': '@id' },
       {
 
@@ -1172,7 +1172,7 @@ module.factory(
          * </em>
          */
         "create": {
-          url: urlBase + "/nves",
+          url: urlBase + "/nfes",
           method: "POST"
         },
 
@@ -1211,7 +1211,7 @@ module.factory(
          */
         "createMany": {
           isArray: true,
-          url: urlBase + "/nves",
+          url: urlBase + "/nfes",
           method: "POST"
         },
 
@@ -1249,7 +1249,7 @@ module.factory(
          * </em>
          */
         "upsert": {
-          url: urlBase + "/nves",
+          url: urlBase + "/nfes",
           method: "PUT"
         },
 
@@ -1281,7 +1281,7 @@ module.factory(
          *  - `exists` – `{boolean=}` -
          */
         "exists": {
-          url: urlBase + "/nves/:id/exists",
+          url: urlBase + "/nfes/:id/exists",
           method: "GET"
         },
 
@@ -1316,7 +1316,7 @@ module.factory(
          * </em>
          */
         "findById": {
-          url: urlBase + "/nves/:id",
+          url: urlBase + "/nfes/:id",
           method: "GET"
         },
 
@@ -1350,7 +1350,7 @@ module.factory(
          */
         "find": {
           isArray: true,
-          url: urlBase + "/nves",
+          url: urlBase + "/nfes",
           method: "GET"
         },
 
@@ -1383,7 +1383,7 @@ module.factory(
          * </em>
          */
         "findOne": {
-          url: urlBase + "/nves/findOne",
+          url: urlBase + "/nfes/findOne",
           method: "GET"
         },
 
@@ -1417,7 +1417,7 @@ module.factory(
          * The number of instances updated
          */
         "updateAll": {
-          url: urlBase + "/nves/update",
+          url: urlBase + "/nfes/update",
           method: "POST"
         },
 
@@ -1450,7 +1450,7 @@ module.factory(
          * </em>
          */
         "deleteById": {
-          url: urlBase + "/nves/:id",
+          url: urlBase + "/nfes/:id",
           method: "DELETE"
         },
 
@@ -1482,7 +1482,7 @@ module.factory(
          *  - `count` – `{number=}` -
          */
         "count": {
-          url: urlBase + "/nves/count",
+          url: urlBase + "/nfes/count",
           method: "GET"
         },
 
@@ -1519,7 +1519,7 @@ module.factory(
          * </em>
          */
         "prototype$updateAttributes": {
-          url: urlBase + "/nves/:id",
+          url: urlBase + "/nfes/:id",
           method: "PUT"
         },
 
@@ -1556,7 +1556,7 @@ module.factory(
          *  - `changes` – `{ReadableStream=}` -
          */
         "createChangeStream": {
-          url: urlBase + "/nves/change-stream",
+          url: urlBase + "/nfes/change-stream",
           method: "POST"
         },
       }

@@ -1,5 +1,6 @@
 {
   "name": "nfe",
+  "plural": "nfes",
   "base": "PersistedModel",
   "strict": false,
   "idInjection": false,
