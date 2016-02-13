@@ -1,6 +1,10 @@
 module.exports = function(app) {
-  var crawlerSefaz = require('../util/crawlerSefaz');
-  var validateNfe = require('../util/validateNfe');
+  var crawlerSefaz = require('../util/crawlerSefaz'),
+      validateNfe = require('../util/validateNfe'),
+      inventory = require('../util/inventory'),
+      geolocation = require('../util/geolocation'),
+      getcnae = require('../util/getcnae'),
+      Promise = require('bluebird');
 
   app.get('/crawler/:key', function(req, res) {
     var key = req.params.key;
@@ -13,15 +17,26 @@ module.exports = function(app) {
         if(nfe.length == 0){
           crawlerSefaz(key, function(err, data){
             if(data){
-              data_nfe = {
-                "msg": "ok",
-                "key": data.chaveNFe,
-                "source": [data.source.name, data.source.fantasy].join(', '),
-                "data": data
-              };
-              app.models.nfe.create(data_nfe, function(err, response){
-                console.log("Crawling nfe "+data_nfe.key);
-                res.json(response);
+              Promise.all([
+                getcnae(data.source.ie, app),
+                geolocation(data.source.address, app)
+                // inventory(data_nfe, app)
+              ]).then(function(values){
+                // console.log(values);
+                result = {
+                  "msg": "ok",
+                  "key": data.chaveNFe,
+                  "source": [data.source.name, data.source.fantasy].join(', '),
+                  "data": data
+                };
+                result.data.source.cnae = values[0];
+                result.data.source.address = values[1];
+                app.models.nfe.create(result);
+                console.log("Crawling nfe "+result.key);
+                res.json(result);
+              }).catch(function(err){
+                console.log(err.message);
+                res.json({"msg": "Problemas para obter a nota"});
               });
             }else{
               console.error(err);

@@ -26,7 +26,7 @@ function crawlerSefaz(id, callback){
       var dataUtf8 = iconv.decode(new Buffer(html), "ISO-8859-1");
       var $ = cheerio.load(dataUtf8);
 
-      // CAPTCHA
+      // TODO CAPTCHA
       // <script type='text/javascript'>alert('Favor informar novamente os caracteres de segurança.');location.href = 'SAT-WEB-NFE-COM_1.asp?HML=false&chaveNFe=25150900289351000164650010000275641002130370';</script>
       // curl 'https://www.sefaz.rs.gov.br/ASP/AAE_ROOT/NFE/SAT-WEB-NFE-COM_1.asp?HML=&chaveNFe=' -H 'Accept-Encoding: gzip, deflate, sdch' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.97 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Referer: https://www.sefaz.rs.gov.br/ASP/AAE_ROOT/NFE/SAT-WEB-NFE-COM_2.asp' -H 'Cookie: AffinitySefaz=33786eb18450c9bf97885dafb8af616c27e79212d760fa0d7f1cd275e6c033cb; ASPSESSIONIDSGSADBCA=CKAJPLMAGFKMJEGAPBDHLOOO' -H 'Connection: keep-alive' --compressed
       // IMG_CAPTCHA https://www.sefaz.rs.gov.br/nfe/captchaweb/prCaptcha.aspx?f=getimage&rld=0&rdn=QlPhvoD6lb18f86Ck20mOv34bsvNv0VD
@@ -47,12 +47,13 @@ function crawlerSefaz(id, callback){
         callback('Nota '+id+' não encontrada na base do SEFAZ.', null)
         return null;
       }
-/******************************GET PRODUCTS**********************************/
+      // GET PRODUCTS
       var products = [];
       var toggleBox;
       $('#Prod').find('.toggle.box').each(function(index){
          toggleBox = $('#Prod').find('.toggle.box');
          toggableBox = $('#Prod').find('.toggable.box');
+        //  TODO get custom TAX
          icms = {
            "origin": toggableBox.eq(index).find('span').eq(22).text(),
            "kind": toggableBox.eq(index).find('span').eq(23).text()
@@ -79,7 +80,7 @@ function crawlerSefaz(id, callback){
             }
           });
       });
-  /****************************************************************************/
+
       var data = {
         "chaveNFe": key,
         'info': {
