@@ -37,5 +37,17 @@
     "public": true,
     "$promise": {},
     "$resolved": true
+  },
+  "cnae": {
+    "dataSource": "mongolab",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "address": {
+    "dataSource": "mongolab",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
   }
 }
