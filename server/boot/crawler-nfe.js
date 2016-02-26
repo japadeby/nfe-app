@@ -30,7 +30,7 @@ module.exports = function(app) {
                   "data": data
                 };
                 result.data.source.cnae = values[0];
-                result.data.source.address = values[1];
+                result.data.source.address.location = values[1];
                 app.models.nfe.create(result);
                 console.log("Crawling nfe "+result.key);
                 res.json(result);
