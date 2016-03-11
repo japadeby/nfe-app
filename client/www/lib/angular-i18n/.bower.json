@@ -16,6 +16,5 @@
   },
   "_source": "git://github.com/angular/bower-angular-i18n.git",
   "_target": "~1.4.9",
-  "_originalSource": "angular-i18n",
-  "_direct": true
+  "_originalSource": "angular-i18n"
 }

@@ -1,5 +1,3 @@
-/* Empty. Add your own CSS if you like */
-
 #barCode{
     width: 5em;
     height: auto;
@@ -14,3 +12,84 @@
 #tableNfeDetail tbody td:nth-child(n+3){
   text-align: right;
 }
+
+.title{
+	text-transform: uppercase;
+}
+
+.footerText{
+	font-size: 9pt;
+}
+
+.bar .button.button-clear{
+  color: #444;
+}
+
+/*==============================
+Mudança na paleta de cores se-
+guindo o guia Material Design
+disponibilizado pela Google
+===============================*/
+.bar.bar-positive {
+    border-color: #1565C0;
+    background-color: #2196F3;
+    background-image: linear-gradient(0deg, #1565C0, #1565C0 50%, transparent 50%);
+    color: rgba(255,255,255,0.87); }
+    .bar.bar-positive .title {
+      color: rgba(255,255,255,0.87); }
+    .bar.bar-positive.bar-footer {
+      background-image: linear-gradient(180deg, #1565C0, #1565C0 50%, transparent 50%); }
+  .bar.bar-calm {
+    border-color: #B3E5FC;
+    background-color: #03A9F4;
+    background-image: linear-gradient(0deg, #B3E5FC, #B3E5FC 50%, transparent 50%);
+    color: rgba(0,0,0,.87); }
+    .bar.bar-calm .title {
+      color: rgba(255,255,255,0.87); }
+    .bar.bar-calm.bar-footer {
+      background-image: linear-gradient(180deg, #B3E5FC, #B3E5FC 50%, transparent 50%); }
+  .bar.bar-assertive {
+    border-color: #D32F2F;
+    background-color: #F44336;
+    background-image: linear-gradient(0deg, #D32F2F, #D32F2F 50%, transparent 50%);
+    color: rgba(255,255,255,0.87); }
+    .bar.bar-assertive .title {
+      color: rgba(255,255,255,0.87); }
+    .bar.bar-assertive.bar-footer {
+      background-image: linear-gradient(180deg, #D32F2F, #D32F2F 50%, transparent 50%); }
+  .bar.bar-balanced {
+    border-color: #388E3C;
+    background-color: #4CAF50;
+    background-image: linear-gradient(0deg, #388E3C, #388E3C 50%, transparent 50%);
+    color: rgba(255,255,255,0.87); }
+    .bar.bar-balanced .title {
+      color: rgba(255,255,255,0.87); }
+    .bar.bar-balanced.bar-footer {
+      background-image: linear-gradient(180deg, #388E3C, #2E7D32 50%, transparent 50%); }
+ .bar.bar-energized {
+    border-color: #e6b500;
+    background-color: #ffc900;
+    background-image: linear-gradient(0deg, #e6b500, #e6b500 50%, transparent 50%);
+    color: rgba(0,0,0,0.54); }
+    .bar.bar-energized .title {
+      color: rgba(255,255,255,0.87); }
+    .bar.bar-energized.bar-footer {
+      background-image: linear-gradient(180deg, #e6b500, #e6b500 50%, transparent 50%); }
+  .bar.bar-royal {
+    border-color: #7B1FA2;
+    background-color: #9C27B0;
+    background-image: linear-gradient(0deg, #7B1FA2, #7B1FA2 50%, transparent 50%);
+    color: rgba(243,229,245,0.87); }
+    .bar.bar-royal .title {
+      color: #F3E5F5 }
+    .bar.bar-royal.bar-footer {
+      background-image: linear-gradient(180deg, #7B1FA2, #7B1FA2 50%, transparent 50%); }
+  .bar.bar-dark {
+    border-color: #212121;
+    background-color: #424242;
+    background-image: linear-gradient(0deg, #212121, #212121 50%, transparent 50%);
+    color: rgba(255,255,255,.87); }
+    .bar.bar-dark .title {
+      color: rgba(255,255,255,.87); }
+    .bar.bar-dark.bar-footer {
+      background-image: linear-gradient(180deg, #212121, #212121 50%, transparent 50%); }

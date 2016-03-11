@@ -1,4 +1,5 @@
 <ion-view view-title="{{title}}">
+
   <ion-content>
     <div class="item item-text-wrap" ng-repeat="(name, product) in products | orderObjectBy:'total':true">
       <h2>{{product.name}}</h2>

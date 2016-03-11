@@ -21,7 +21,7 @@
       </div>
     </div>
   </ion-content>
-  <ion-footer-bar>
+  <!-- <ion-footer-bar>
     <div class="row" style="padding:0px">
       <div class="col col-25" style="padding:0px">
         <p><b>Notas:</b><br>{{ total()['count'] }}</p>
@@ -36,6 +36,26 @@
         <p><b>Total:</b><br>{{ total()['total'] | currency}}</p>
       </div>
     </div>
+
     <a href="#/app/nfes" ng-click="scan()" style="position: fixed; right: 30px; bottom: 50px;"><img src="img/code.svg" alt="" id="barCode"></a>
-  </ion-footer-bar>
+  </ion-footer-bar> -->
+  <div class="bar bar-footer bar-calm">
+    <div class="row" style="padding: 0px; margin: -0px 0 0 10px;">
+      <div class="col col-25">
+        <p class="footerText"><b>NOTAS</b> {{ total()['count'] }}</p>
+      </div>
+      <div class="col col-33">
+        <p class="footerText">
+          <b>IMPOSTO</b> {{ total()['tax']|currency }}
+          ({{(total()['tax']/total()['total']*100) | number: 0 }}%)
+        </p>
+      </div>
+      <div class="col col-33">
+        <p class="footerText"><b>TOTAL</b> {{ total()['total'] | currency}}</p>
+      </div>
+    </div>
+    <div class="buttons buttons-right">
+      <button class="button button-positive button-fab" onclick= "scan()"><i class="icon ion-qr-scanner"></i></button>
+    </div>
+  </div>
 </ion-view>
