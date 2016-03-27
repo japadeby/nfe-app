@@ -3,13 +3,13 @@
   <ion-content>
     <!-- TODO group card by month -->
     <div>
-      <div class="card" ng-repeat="nfe in source_nfes" ui-sref="app.nfe-detail({nfeId: nfe.id})">
+      <div class="card" ng-repeat="nfe in sourceNfes" ui-sref="app.nfe-detail({nfeId: nfe.id})">
         <div class="item item-text-wrap item-icon-right">
           <!-- TODO colocar #ID -->
           <h2 class="origin">{{$index+1}} - {{nfe.source}}</h2>
           <div class="row" style="padding:0px">
             <div class="col" style="padding:0px">
-              <p class="date">{{nfe.data.info.emission_date | date : 'dd/MM/yyyy'}}</p>
+              <p class="date">{{nfe.data.info.emissionDate | date : 'dd/MM/yyyy'}}</p>
             </div>
             <div class="col" style="padding:0px;text-align:right">
               <p class="price">{{nfe.data.info.total | currency}}</p>
@@ -24,16 +24,16 @@
   <ion-footer-bar>
     <div class="row" style="padding:0px">
       <div class="col col-25" style="padding:0px">
-        <p><b>Notas:</b><br>{{ source_total()['count'] }}</p>
+        <p><b>Notas:</b><br>{{ sourceTotal()['count'] }}</p>
       </div>
       <div class="col col-33" style="padding:0px">
         <p>
-          <b>Imposto:</b><br>{{ source_total()['tax']|currency }}
-          ({{(source_total()['tax']/source_total()['total']*100) | number:0 }}%)
+          <b>Imposto:</b><br>{{ sourceTotal()['tax']|currency }}
+          ({{(sourceTotal()['tax']/sourceTotal()['total']*100) | number:0 }}%)
         </p>
       </div>
       <div class="col col-33" style="padding:0px">
-        <p><b>Total:</b><br>{{ source_total()['total'] | currency}}</p>
+        <p><b>Total:</b><br>{{ sourceTotal()['total'] | currency}}</p>
       </div>
     </div>
   </ion-footer-bar>

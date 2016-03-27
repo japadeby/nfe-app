@@ -1,65 +1,78 @@
-angular.module('starter.services', [])
+angular.module('starter.services', ['pouchdb'])
 
-.factory('Crawler', ['$http', 'config', function($http, config) {
+.factory('pouchdb', function () {
+  // PouchDB.sync('nfe', 'http://localhost:5984/nfe');
+  return new PouchDB('nfe');
+})
+
+.factory('Crawler', ['$http', 'config', function ($http, config) {
   return {
-    getNFe: function(key, callback){
+    getNFe: function (key, callback) {
       $http
-        .get(config.urlBase+'/crawler/'+key)
-        .success(function(res) {
+        .get(config.urlBase + '/crawler/' + key)
+        .success(function (res) {
           callback(null, res);
         })
-        .error(function(data){
-          callback(data);;
+        .error(function (data) {
+          callback(data);
         });
-    }
-  }
-}])
+    },
+  };
+},
+])
 
-.factory('ValidateNfe', function() {
-  function keyMod11(key_nfe) {
-    base = 9;
-    result = 0;
-    sum = 0;
-    factor = 2;
-    numbers = [];
-    partial = [];
-    for (i = key_nfe.length; i > 0; i--) {
-      numbers[i] = key_nfe.substr(i - 1, 1);
+.factory('ValidateNfe', function () {
+  function keyMod11(keyNfe) {
+    var base = 9;
+    var result = 0;
+    var sum = 0;
+    var factor = 2;
+    var numbers = [];
+    var partial = [];
+
+    for (var i = keyNfe.length; i > 0; i--) {
+      numbers[i] = keyNfe.substr(i - 1, 1);
       partial[i] = numbers[i] * factor;
       sum += partial[i];
-      if (factor == base) {
+
+      if (factor === base) {
         factor = 1;
       }
+
       factor++;
     }
-    if (result == 0) {
+
+    if (result === 0) {
       sum *= 10;
-      digit = sum % 11;
-      if (digit == 10) {
+      var digit = sum % 11;
+
+      if (digit === 10) {
         digit = 0;
       }
+
       return digit;
-    } else if (result == 1) {
-      rest = sum % 11;
+    } else if (result === 1) {
+      var rest = sum % 11;
       return rest;
     }
   }
 
-  function checkDV(key_nfe){
-    return (keyMod11(key_nfe.slice(0, -1)) == key_nfe.split('').pop())
+  function checkDV(keyNfe) {
+    return (keyMod11(keyNfe.slice(0, -1)) === keyNfe.split('').pop());
   }
 
-  function checkSize(key_nfe){
-    return /\d{44}/.test(key_nfe)
+  function checkSize(keyNfe) {
+    return /\d{44}/.test(keyNfe);
   }
 
   return {
-    validate: function(key_nfe){
-      if(!checkDV(key_nfe))
-        return "Chave de Acesso "+key_nfe+" não é valida"
-      if(!checkSize(key_nfe))
-        return "Tamanho do Chave de Acesso "+key_nfe+" não é igual a 44 dígitos."
-      return "OK"
-    }
-  }
+    validate: function (keyNfe) {
+      if (!checkDV(keyNfe))
+        return 'Chave de Acesso ' + keyNfe + ' não é valida';
+      if (!checkSize(keyNfe))
+        return 'Tamanho do Chave de Acesso ' + keyNfe +
+                  ' não é igual a 44 dígitos.';
+      return 'OK';
+    },
+  };
 });

@@ -14,38 +14,44 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "couch"
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "couch",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "couch",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "couch",
     "public": false
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "couch",
     "public": false
   },
   "nfe": {
-    "dataSource": "mongolab",
+    "dataSource": "couch",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "Customer": {
+    "dataSource": "couch",
     "public": true,
     "$promise": {},
     "$resolved": true
   },
   "cnae": {
-    "dataSource": "mongolab",
+    "dataSource": "couch",
     "public": true,
     "$promise": {},
     "$resolved": true
   },
   "address": {
-    "dataSource": "mongolab",
+    "dataSource": "couch",
     "public": true,
     "$promise": {},
     "$resolved": true

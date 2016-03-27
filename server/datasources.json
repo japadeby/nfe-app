@@ -3,13 +3,12 @@
     "name": "db",
     "connector": "memory"
   },
-  "mongolab": {
+  "couch": {
     "host": "localhost",
-    "port": 27017,
-    "database": "nfe2",
-    "password": "",
-    "name": "mongolab",
-    "connector": "mongodb",
-    "user": ""
+    "port": 5984,
+    "database": "nfe",
+    "name": "couch",
+    "connector": "couch",
+    "protocol": "http"
   }
 }

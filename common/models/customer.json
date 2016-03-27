@@ -1,0 +1,16 @@
+{
+  "name": "Customer",
+  "base": "User",
+  "idInjection": true,
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "nfes": {
+      "type": "hasMany",
+      "model": "nfe",
+      "foreignKey": "customerId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

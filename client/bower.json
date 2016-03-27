@@ -7,6 +7,8 @@
   "dependencies": {
     "ngCordova": "~0.1.24-alpha",
     "angular-i18n": "~1.4.9",
-    "angular-filter": "~0.5.8"
+    "angular-filter": "~0.5.8",
+    "angular-pouchdb": "~4.1.0",
+    "pouchdb": "~5.3.1"
   }
 }

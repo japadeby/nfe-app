@@ -17,7 +17,7 @@
               <p>Notas: {{source.count}}</p>
             </div>
             <div class="col" style="text-align:right">
-              <p>{{source.total|currency}} ({{source.total/sources_total*100|number:0}}%)</p>
+              <p>{{source.total|currency}} ({{source.total/sourcesTotal*100|number:0}}%)</p>
             </div>
           </div>
           <i class="icon ion-chevron-right icon-accessory"></i>
@@ -28,15 +28,15 @@
   <ion-footer-bar>
     <div class="row" style="padding:0px">
       <div class="col col-25" style="padding:0px">
-        <p><b>Notas:</b><br>{{ sources_count }}</p>
+        <p><b>Notas:</b><br>{{ sourcesCount }}</p>
       </div>
       <div class="col col-33" style="padding:0px">
         <p>
-          <b>Empresas:</b><br>{{ sources_size }}
+          <b>Empresas:</b><br>{{ sourcesSize }}
         </p>
       </div>
       <div class="col col-33" style="padding:0px">
-        <p><b>Total:</b><br>{{ sources_total | currency}}</p>
+        <p><b>Total:</b><br>{{ sourcesTotal | currency}}</p>
       </div>
     </div>
   </ion-footer-bar>

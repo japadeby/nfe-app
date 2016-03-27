@@ -11,5 +11,32 @@
     "name": "mongolab",
     "connector": "mongodb",
     "user": "ifpb"
+  },
+  "mongo": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "nfe2",
+    "password": "",
+    "name": "mongo",
+    "connector": "mongodb",
+    "user": ""
+  },
+  "couch": {
+    "host": "localhost",
+    "port": 5984,
+    "database": "nfe",
+    "name": "couch",
+    "connector": "couch", #couchbase
+    "protocol": "http"
+  },
+  "couchbase": {
+    "host": "127.0.0.1",
+    "port": 8091,
+    "password": "123456",
+    "n1qlport": 8093,
+    "connector": "couchbase",
+    "database": "default",
+    "connectionTimeout": 10000,
+    "operationTimeout": 10000
   }
 }

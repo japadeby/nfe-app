@@ -1,0 +1,178 @@
+https://github.com/GovRight/loopback-console
+npm install loopback-console --save
+ln -s  node_modules/loopback-console/bin/loopback-console lbc
+./lbc
+User.all()
+Models: User, AccessToken, ACL, RoleMapping, Role, nfe, cnae, address
+
+nfeR = nfe.findOne()
+nfeR = nfe.findOne({include:'user'})
+userR = User.findOne({include: 'nfes', where: {username:'luiz'}})
+userR.nfes
+nfeR.userId = userR.id;
+userR.save()
+nf = {userId: userR.id, data: '1234', key: '1234'}
+nfe.create(nf)
+userR = User.findOne({include: 'nfes', where: {username:'luiz'}})
+userR.nfes
+
+User.findOne(function(err,u){console.log(u.nfes);});
+
+http://localhost:3000/api/users?filter[where][username]=luiz
+http://localhost:3000/api/Users?filter[include][nfes]=user
+http://localhost:3000/api/Users?filter[include]=nfes
+http://localhost:3000/api/Users/1/nfes
+http://localhost:3000/api/Customers/82d800bf9a67a61248a9096610000a7e/nfes
+http://localhost:3000/api/nfes/82d800bf9a67a61248a90966100058ec/customer
+
+Customer.create({username: 'luiz', email: "luiz@luiz.com", password: "123"}, function(err, res) {
+  if (err) return console.error(err);
+  console.log('Customer created: ', res);
+  nfe.create({data: '1234', key: '1234', customerId: res.id}, function(err, res) {
+    if (err) return console.error(err);
+    console.log('Nfe created: ', res);
+  });
+});
+
+Customer.findOne({include: 'nfes', where: {username:'luiz'}}, function(err, res) {
+  if (err) return console.error(err);
+  console.log('Customer created: ', res);
+  console.log('Customer created: ', res.nfes);
+});
+
+nfe.findOne({}, function(err, res) {
+  if (err) return console.error(err);
+  console.log('nfe created: ', res);
+  console.log('nfe created: ', res.user);
+});
+
+TODO CAPTCHA
+<script type='text/javascript'>alert('Favor informar novamente os caracteres de segurança.');location.href = 'SAT-WEB-NFE-COM_1.asp?HML=false&chaveNFe=25150900289351000164650010000275641002130370';</script>
+curl 'https://www.sefaz.rs.gov.br/ASP/AAE_ROOT/NFE/SAT-WEB-NFE-COM_1.asp?HML=&chaveNFe=' -H 'Accept-Encoding: gzip, deflate, sdch' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.97 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Referer: https://www.sefaz.rs.gov.br/ASP/AAE_ROOT/NFE/SAT-WEB-NFE-COM_2.asp' -H 'Cookie: AffinitySefaz=33786eb18450c9bf97885dafb8af616c27e79212d760fa0d7f1cd275e6c033cb; ASPSESSIONIDSGSADBCA=CKAJPLMAGFKMJEGAPBDHLOOO' -H 'Connection: keep-alive' --compressed
+IMG_CAPTCHA https://www.sefaz.rs.gov.br/nfe/captchaweb/prCaptcha.aspx?f=getimage&rld=0&rdn=QlPhvoD6lb18f86Ck20mOv34bsvNv0VD
+curl 'https://www.sefaz.rs.gov.br/ASP/AAE_ROOT/NFE/SAT-WEB-NFE-COM_2.asp' -H 'Cookie: AffinitySefaz=33786eb18450c9bf97885dafb8af616c27e79212d760fa0d7f1cd275e6c033cb; ASPSESSIONIDSGSADBCA=CKAJPLMAGFKMJEGAPBDHLOOO' -H 'Origin: https://www.sefaz.rs.gov.br' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.97 Safari/537.36' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Cache-Control: max-age=0' -H 'Referer: https://www.sefaz.rs.gov.br/ASP/AAE_ROOT/NFE/SAT-WEB-NFE-COM_1.asp?HML=&chaveNFe=' -H 'Connection: keep-alive' --data 'HML=false&chaveNFe=25151033014556021193655090000316249858368027&captchaCode=G5WDV&captchaRdnKey=QlPhvoD6lb18f86Ck20mOv34bsvNv0VD&Action=Avan%E7ar' --compressed
+--data HML=false&
+chaveNFe=25151033014556021193655090000316249858368027&
+captchaCode=G5WDV&
+captchaRdnKey=QlPhvoD6lb18f86Ck20mOv34bsvNv0VD&
+Action=Avan%E7ar
+
+
+./node_modules/loopback-console/bin/loopback-console
+
+
+
+curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" -d "{\"email\": \"john@doe.com\", \"password\": \"opensesame\"}" "http://localhost:3000/api/Users/login"
+{"email": "luiz@luiz.com", "password": "123"}
+{"email": "john@doe.com", "password": "opensesame"}
+
+ACCESS_TOKEN=fqp3qACgf3zEDOMuUXTi66TZGqAlm48RUZSshqsYJm8x6PKimrGX2mi1iNrHTnhY
+curl -X GET -H "Authorization: $ACCESS_TOKEN" http://localhost:3000/api/users
+curl -X GET -H "Authorization: Q2nvSRg0dB4PvdNFixp2SZsBzJHGMLfMyyXbXGIJEZrASqWN6La0JHWQcDsiYETq" http://localhost:3000/api/users
+curl -X GET http://localhost:3000/api/users?access_token=Q2nvSRg0dB4PvdNFixp2SZsBzJHGMLfMyyXbXGIJEZrASqWN6La0JHWQcDsiYETq
+
+
+Apache CouchDB - Futon: Browse Database
+http://127.0.0.1:5984/_utils/database.html?nfe
+
+localhost:5984/nfe
+http://localhost:5984/nfe
+
+StrongLoop API Explorer
+http://localhost:3000/explorer/#!/User/User_find
+
+http://localhost:3000/crawler/25150945543915044120650010000292201118199306 is not available
+http://localhost:3000/crawler/25150945543915044120650010000292201118199306
+
+Notas Fiscais
+http://localhost:8100/#/app/nfes
+
+AngularJS Todo with PouchDB backend - JSFiddle
+http://jsfiddle.net/zrrrzzt/cNVhE/
+
+angular-pouchdb/angular-pouchdb: AngularJS wrapper for PouchDB
+https://github.com/angular-pouchdb/angular-pouchdb
+
+angular-pouchdb
+https://angular-pouchdb.github.io/angular-pouchdb/#/examples/live
+
+angular-pouchdb example - bl.ocks.org
+http://bl.ocks.org/tlvince/be2ec108df073040f8b0
+
+angular-pouchdb-example/todoservice.js at master · MathiasTim/angular-pouchdb-example
+https://github.com/MathiasTim/angular-pouchdb-example/blob/master/app/scripts/services/todoservice.js
+
+How To Use PouchDB + SQLite For Local Storage In Your Ionic App
+http://gonehybrid.com/how-to-use-pouchdb-sqlite-for-local-storage-in-your-ionic-app/
+
+login loopback - Google Search
+https://www.google.com.br/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=login%20loopback
+
+loopback create user model - Google Search
+https://www.google.com.br/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=loopback%20create%20user%20model
+
+authorization required loopback - Google Search
+https://www.google.com.br/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=authorization%20required%20loopback
+
+javascript - Loopback ACL: Create a User with a Role - Stack Overflow
+http://stackoverflow.com/questions/23463250/loopback-acl-create-a-user-with-a-role
+
+node.js - How to use Loopback ACL modify permissions on the user role - Stack Overflow
+http://stackoverflow.com/questions/25524877/how-to-use-loopback-acl-modify-permissions-on-the-user-role
+
+javascript - How to set up the ACL to allow everyone list all the Users from the REST API - Stack Overflow
+http://stackoverflow.com/questions/25353581/how-to-set-up-the-acl-to-allow-everyone-list-all-the-users-from-the-rest-api
+
+javascript - Authorization and authentication in Strongloop - Stack Overflow
+http://stackoverflow.com/questions/27826083/authorization-and-authentication-in-strongloop
+
+Error "401 Authorization required" when querying methods involving relations · Issue #426 · strongloop/loopback
+https://github.com/strongloop/loopback/issues/426
+
+strongloop/loopback-example-user-management: http://docs.strongloop.com/display/LB/Managing+users
+https://github.com/strongloop/loopback-example-user-management
+
+loopback-example-access-control/user.json at master · strongloop/loopback-example-access-control
+https://github.com/strongloop/loopback-example-access-control/blob/master/common/models/user.json
+
+loopback-example-access-control/common/models at master · strongloop/loopback-example-access-control
+https://github.com/strongloop/loopback-example-access-control/tree/master/common/models
+
+Define a remote hook - LoopBack - Documentation
+https://docs.strongloop.com/display/public/LB/Define+a+remote+hook
+
+Getting started with LoopBack - LoopBack - Documentation
+https://docs.strongloop.com/display/public/LB/Getting+started+with+LoopBack
+
+Managing users - LoopBack - Documentation
+https://docs.strongloop.com/display/public/LB/Managing+users
+
+Defining and using roles - LoopBack - Documentation
+https://docs.strongloop.com/display/public/LB/Defining+and+using+roles
+
+Registering users - LoopBack - Documentation
+https://docs.strongloop.com/display/public/LB/Registering+users
+
+Third-party login (Passport) - LoopBack - Documentation
+https://docs.strongloop.com/pages/releaseview.action?pageId=3836277
+
+Tutorial: access control - LoopBack - Documentation
+https://docs.strongloop.com/display/public/LB/Tutorial%3A+access+control
+
+Introduction to User model authentication - LoopBack - Documentation
+https://docs.strongloop.com/display/public/LB/Introduction+to+User+model+authentication
+
+api/Users 401 (Unauthorized) loopback access token - Google Search
+https://www.google.com.br/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=api%2FUsers+401+(Unauthorized)+loopback+access+token
+
+How to get current authenticated user · Issue #569 · strongloop/loopback
+https://github.com/strongloop/loopback/issues/569
+
+Authorization header is not acceptable for resolving $owner role in ACLs? · Issue #2149 · strongloop/loopback
+https://github.com/strongloop/loopback/issues/2149
+
+angularjs - Loopback 401 error when trying to update - Stack Overflow
+http://stackoverflow.com/questions/31989878/loopback-401-error-when-trying-to-update
+
+express - Loopback unauthorized request when trying to login - Stack Overflow
+http://stackoverflow.com/questions/27920360/loopback-unauthorized-request-when-trying-to-login

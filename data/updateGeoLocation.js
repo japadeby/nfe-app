@@ -9,9 +9,9 @@ MongoClient.connect('mongodb://localhost:27017/nfe', function(err, db) {
 				address = [
 					address.street,
 					address.neighbourhood,
-					address.name_city,
+					address.nameCity,
 					address.uf,
-					// address.postal_code,
+					// address.postalCode,
 					'brasil'
 				].join(', ');
 				var geocoder = require('node-geocoder')('google', 'https',{'apiKey':'AIzaSyCTkYUF2DfyvN1nQtQDgIFKcy8sco1kZgc', 'formatter': null});
