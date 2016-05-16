@@ -11,19 +11,20 @@ module.exports = function (app) {
     var validation = validateNfe(key);
     if (validation !== 'OK') {
       console.error(validation);
-      res.json({msg: validation});
+      res.json({ msg: validation });
     } else {
-      app.models.nfe.find({where: {key: key}}, function (err, nfe) {
+      app.models.nfe.find({ where: { key: key } }, function (err, nfe) {
         if (nfe.length === 0) {
           crawlerSefaz(key, function (err, data) {
             if (data) {
               Promise.all([
                 getcnae(data.source.ie, app),
-                geolocation(data.source.address, app)
-                // inventory(data_nfe, app)
+                geolocation(data.source.address, app),
+
+                // inventory(data_nfe, app),
               ]).then(function (values) {
                 // console.log(values);
-                result = {
+                var result = {
                   msg: 'ok',
                   key: data.chaveNFe,
                   source: [data.source.name, data.source.fantasy].join(', '),
@@ -36,11 +37,11 @@ module.exports = function (app) {
                 res.json(result);
               }).catch(function (err) {
                 console.log(err.message);
-                res.json({msg: 'Problemas para obter a nota'});
+                res.json({ msg: 'Problemas para obter a nota' });
               });
             } else {
               console.error(err);
-              res.json({msg: err});
+              res.json({ msg: err });
             }
           });
         } else {

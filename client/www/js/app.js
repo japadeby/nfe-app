@@ -1,7 +1,24 @@
-angular.module('starter', [
-            'ionic', 'starter.controllers', 'starter.services',
-            'lbServices', 'ngCordova', 'angular.filter', 'pouchdb',
-])
+angular.module(
+  'starter',
+  [
+    'starter.app-ctrl',
+    'starter.nfes',
+    'starter.nfe-products',
+    'starter.nfe-detail',
+    'starter.nfe-compact',
+    'starter.nfes-source',
+    'starter.sources',
+    'starter.login',
+    'starter.register',
+    'starter.filters',
+    'starter.services',
+    'lbServices',
+    'ngCordova',
+    'angular.filter',
+    'pouchdb',
+    'ionic',
+  ]
+)
 
 .run(function ($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function () {
@@ -16,16 +33,20 @@ angular.module('starter', [
   });
 })
 
-.constant('config', {
-  // urlBase: 'http://10.0.1.6:3000',
-  // urlBase: 'http://192.168.159.108:3000',
-  // urlBase: 'http://192.168.100.106:3000',
-  // urlBase: 'http://192.168.0.107:3000',
-  urlBase: 'http://localhost:3000',
-})
-
 .config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider
+
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl',
+  })
+
+  .state('register', {
+    url: '/register',
+    templateUrl: 'templates/register.html',
+    controller: 'RegisterCtrl',
+  })
 
   .state('app', {
     url: '/app',

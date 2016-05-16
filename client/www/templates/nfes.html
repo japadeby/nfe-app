@@ -36,6 +36,26 @@
         <p><b>Total:</b><br>{{ total()['total'] | currency}}</p>
       </div>
     </div>
-    <a href="#/app/nfes" ng-click="scan()" style="position: fixed; right: 30px; bottom: 50px;"><img src="img/code.svg" alt="" id="barCode"></a>
+    <!-- <a href="#/app/nfes" ng-click="scan()" class="btn-floating btn-large waves-effect waves-light red" style="position: fixed; right: 30px; bottom: 50px;">
+      <img src="img/code.svg" alt="" id="barCode">
+      <i class="large material-icons">add</i>
+    </a> -->
+    <div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">
+      <a class="btn-floating btn-large green">
+        <i class="large material-icons">add</i>
+      </a>
+      <ul>
+        <!-- <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li> -->
+        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+        <li><a class="btn-floating blue" ng-click="scan()"><i class="mdi mdi-qrcode">qrcode</i></a></li>
+      </ul>
+    </div>
   </ion-footer-bar>
 </ion-view>
+<script type="text/javascript">
+  $('.btn-floating').click(function () {
+    $('.fixed-action-btn').openFAB();
+  });
+</script>

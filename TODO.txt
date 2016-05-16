@@ -1,3 +1,15 @@
+https://developers.facebook.com/apps/1555025584790448/settings/
+
+cordova plugin add cordova-plugin-whitelist
+
+http://localhost:3000/api/Users/me
+https://strongloop.com/strongblog/part-1-ionic-loopback-node-js-mobile/
+
+https://github.com/malixsys/ionic-loopback-example
+https://github.com/belibasakis/loopback-example-ionic
+https://github.com/vkarpov15/stopwatch-server-example
+https://github.com/strongloop/loopback-example-passport
+
 https://github.com/GovRight/loopback-console
 npm install loopback-console --save
 ln -s  node_modules/loopback-console/bin/loopback-console lbc
@@ -61,10 +73,25 @@ Action=Avan%E7ar
 ./node_modules/loopback-console/bin/loopback-console
 
 
-
+LOGIN
 curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" -d "{\"email\": \"john@doe.com\", \"password\": \"opensesame\"}" "http://localhost:3000/api/Users/login"
-{"email": "luiz@luiz.com", "password": "123"}
 {"email": "john@doe.com", "password": "opensesame"}
+
+curl -X POST \
+--header "Content-Type: application/json" \
+--header "Accept: application/json" \
+-d "{\"email\": \"luiz@luiz.com\", \"password\": \"123\"}" \
+"http://localhost:3000/api/Users/login"
+
+curl 'http://localhost:3000/api/Users/login?email=luiz@luiz.com&include=user&password=123' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+--data-binary "{\"email\": \"luiz@luiz.com\", \"password\": \"123\"}"
+
+curl 'http://localhost:3000/api/Users/login?email=luiz@luiz.com&include=user&password=123' -H 'Origin: http://localhost:8100' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36' -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept: application/json, text/plain, */*' -H 'Referer: http://localhost:8100/' -H 'Connection: keep-alive' --data-binary '{"username":"luiz@luiz.com","password":"123"}' --compressed
+
+{"email": "luiz@luiz.com", "password": "123"}
+{"email": "luiz@luiz.com", "password": "123", "username": "luiz"}
 
 ACCESS_TOKEN=fqp3qACgf3zEDOMuUXTi66TZGqAlm48RUZSshqsYJm8x6PKimrGX2mi1iNrHTnhY
 curl -X GET -H "Authorization: $ACCESS_TOKEN" http://localhost:3000/api/users

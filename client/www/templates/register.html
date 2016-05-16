@@ -1,0 +1,27 @@
+<ion-view title="Register">
+    <ion-content>
+        <form novalidate="novalidate" name="registerForm">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-person"></i>
+                    <input type="text" placeholder="Nome" name="username" ng-model="registration.username" required>
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-email"></i>
+                    <input type="email" placeholder="E-mail" name="email" ng-model="registration.email" required>
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-locked"></i>
+                    <input type="password" placeholder="Senha" name="password" ng-model="registration.password"
+                           required>
+                </label>
+            </div>
+            <div class="padding">
+                <button ng-disabled="!registerForm.$valid" ng-click="register()"
+                        class="button icon ion-compose button-block button-outline button-royal">
+                    Register
+                </button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

@@ -1,49 +1,52 @@
 
-function keyMod11(key_nfe) {
-  base = 9;
-  result = 0;
-  sum = 0;
-  factor = 2;
-  numbers = [];
-  partial = [];
+function keyMod11(keyNfe) {
+  var base = 9;
+  var result = 0;
+  var sum = 0;
+  var factor = 2;
+  var numbers = [];
+  var partial = [];
 
-  for (i = key_nfe.length; i > 0; i--) {
-    numbers[i] = key_nfe.substr(i - 1, 1);
+  for (var i = keyNfe.length; i > 0; i--) {
+    numbers[i] = keyNfe.substr(i - 1, 1);
     partial[i] = numbers[i] * factor;
     sum += partial[i];
-    if (factor == base) {
+    if (factor === base) {
       factor = 1;
     }
+
     factor++;
   }
 
-  if (result == 0) {
+  if (result === 0) {
     sum *= 10;
-    digit = sum % 11;
-    if (digit == 10) {
+    var digit = sum % 11;
+    if (digit === 10) {
       digit = 0;
     }
+
     return digit;
-  } else if (result == 1) {
-    rest = sum % 11;
+  } else if (result === 1) {
+    var rest = sum % 11;
     return rest;
   }
 }
 
-function checkDV(key_nfe){
-  return (keyMod11(key_nfe.slice(0, -1)) == key_nfe.split('').pop())
+function checkDV(keyNfe) {
+  return (keyMod11(keyNfe.slice(0, -1)) === keyNfe.split('').pop());
 }
 
-function checkSize(key_nfe){
-  return /\d{44}/.test(key_nfe)
+function checkSize(keyNfe) {
+  return /\d{44}/.test(keyNfe);
 }
 
-function validateNfe(key_nfe){
-  if(!checkDV(key_nfe))
-    return "Chave de Acesso "+key_nfe+" não é valida"
-  if(!checkSize(key_nfe))
-    return "Tamanho do Chave de Acesso "+key_nfe+" não é igual a 44 dígitos."
-  return "OK"
+function validateNfe(keyNfe) {
+  if (!checkDV(keyNfe))
+    return 'Chave de Acesso ' + keyNfe + ' não é valida';
+  if (!checkSize(keyNfe))
+    return 'Tamanho do Chave de Acesso ' + keyNfe +
+            ' não é igual a 44 dígitos.';
+  return 'OK';
 }
 
 module.exports = validateNfe;
@@ -54,13 +57,18 @@ module.exports = validateNfe;
 //       var debug = '';
 //
 //       // Vazia
-//       if (chaveAcesso == '') { alert('Digite uma Chave de Acesso'); return false };
+//       if (chaveAcesso == '')
+          // { alert('Digite uma Chave de Acesso'); return false };
 //
 //       // Numérica
-//       if (isNaN(chaveAcesso)) { alert('Chave de Acesso não numérica!'); return false; }
+//       if (isNaN(chaveAcesso))
+          // { alert('Chave de Acesso não numérica!'); return false; }
 //
 //       // Tamanho (44 posições)
-//       if (chaveAcesso.length != 44) { alert('Chave de Acesso inválida (menos do que 44 posições)'); return false; }
+//       if (chaveAcesso.length != 44) {
+        //   alert('Chave de Acesso inválida (menos do que 44 posições)'); 
+        //   return false;
+        // }
 //
 //       var vNumero, vFaixa, vTamanho, vDigito, resultado, uf, ufAux;
 //       vDigito = chaveAcesso.substr(43, 1); uf = chaveAcesso.substr(0, 2);

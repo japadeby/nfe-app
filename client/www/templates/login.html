@@ -1,0 +1,37 @@
+<ion-view title="Login">
+
+    <ion-content has-header="true" has-footer="true" padding="true">
+
+        <form novalidate="novalidate" name="loginForm">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-person"></i>
+                    <input type="text" name="username" placeholder="E-mail" ng-model="credentials.username"
+                           required>
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-locked"></i>
+                    <input type="password" name="password" placeholder="Senha" ng-model="credentials.password"
+                           required>
+                </label>
+            </div>
+            <div class="padding">
+                <button ng-disabled="!loginForm.$valid" class="button icon ion-log-in button-block button-balanced"
+                        ng-click="login()">
+                    Entrar
+                </button>
+                <p class="text-center">
+                    ou
+                </p>
+                <button class="button icon button-block button-positive"
+                        ng-click="loginFacebook()">
+                    Facebook
+                </button>
+
+                <button class="button button-block button-balanced button-outline" ng-click="goToRegister()">Não tenho conta ainda?</button>
+
+            </div>
+        </form>
+    </ion-content>
+
+</ion-view>

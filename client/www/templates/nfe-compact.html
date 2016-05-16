@@ -1,4 +1,5 @@
 <ion-view view-title="{{nfe.source}}">
+
   <ion-content>
     <div ng-show="!nfe">
       <div layout="row" layout-sm="column" layout-align="space-around">
@@ -18,10 +19,6 @@
         <p><small><strong>Data: </strong>{{nfe.data.info.emissionDate}}</small></p>
         <p><small><strong>Telefone: </strong>{{nfe.data.target.address.phone}}</small></p>
       </div>
-      <!--
-
-
-      -->
       <div class="item item-divider">
         Produtos
       </div>
@@ -45,4 +42,5 @@
     </div>
     <button class="button icon-left ion-chevron-left" href="#/app/">
   </ion-content>
+
 </ion-view>

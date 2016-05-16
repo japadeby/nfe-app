@@ -1,15 +1,16 @@
-angular.module('starter.services', ['pouchdb'])
+angular.module('starter.services', ['pouchdb', 'ionic', 'lbServices'])
 
 .factory('pouchdb', function () {
-  // PouchDB.sync('nfe', 'http://localhost:5984/nfe');
+  // PouchDB.sync('nfe', 'http://10.0.1.6:5984/nfe');
   return new PouchDB('nfe');
 })
 
-.factory('Crawler', ['$http', 'config', function ($http, config) {
+// .factory('Crawler', ['$http', 'config', function ($http, config) {
+.factory('Crawler', ['$http', function ($http) {
   return {
     getNFe: function (key, callback) {
       $http
-        .get(config.urlBase + '/crawler/' + key)
+        .get('http://localhost:3000/crawler/' + key) //config.serverUrlBase
         .success(function (res) {
           callback(null, res);
         })
@@ -20,6 +21,33 @@ angular.module('starter.services', ['pouchdb'])
   };
 },
 ])
+
+.factory('LoginFacebook', function ($location) {
+  return function () {
+    var url = 'http://localhost:3000/auth/facebook';
+    // var ref = window.open(url, '_blank');
+    var ref = window.open(url, '_blank', 'location=no');
+
+    // For Cordova
+    if (window.cordova) {
+      ref.addEventListener('loadstop', function (ev) {
+        if (ev.url.indexOf('/auth/facebook/callback') !== -1) {
+          ref.close();
+          $location.path('/app/nfes');
+        }
+      });
+    } else {
+      // For `ionic serve --lab`. Wait for the user to close the window
+      // and, when they do, check the server to see if they're now logged in.
+      var interval = setInterval(function () {
+        if (ref.closed) {
+          $location.path('/app/nfes');
+          clearInterval(interval);
+        }
+      }, 1000);
+    }
+  };
+})
 
 .factory('ValidateNfe', function () {
   function keyMod11(keyNfe) {

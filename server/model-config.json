@@ -4,7 +4,8 @@
       "loopback/common/models",
       "loopback/server/models",
       "../common/models",
-      "./models"
+      "./models",
+      "./node_modules/loopback-component-passport/lib/models"
     ],
     "mixins": [
       "loopback/common/mixins",
@@ -17,6 +18,14 @@
     "dataSource": "couch"
   },
   "AccessToken": {
+    "dataSource": "couch",
+    "public": false
+  },
+  "UserCredential": {
+    "dataSource": "couch",
+    "public": false
+  },
+  "UserIdentity": {
     "dataSource": "couch",
     "public": false
   },

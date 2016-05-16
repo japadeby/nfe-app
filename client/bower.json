@@ -9,6 +9,8 @@
     "angular-i18n": "~1.4.9",
     "angular-filter": "~0.5.8",
     "angular-pouchdb": "~4.1.0",
-    "pouchdb": "~5.3.1"
+    "pouchdb": "~5.3.1",
+    "Materialize": "materialize#~0.97.5",
+    "mdi": "~1.5.54"
   }
 }
