@@ -5,10 +5,12 @@ module.exports = function (app) {
   var geolocation = require('../util/geolocation');
   var getcnae = require('../util/getcnae');
   var Promise = require('bluebird');
+  var Inventory = require('../util/inventory');
 
   app.get('/crawler/:key', function (req, res) {
     var key = req.params.key;
-    var validation = validateNfe(key);
+    var validation = 'OK';
+    //var validation = validateNfe(key);
     if (validation !== 'OK') {
       console.error(validation);
       res.json({ msg: validation });
@@ -20,10 +22,7 @@ module.exports = function (app) {
               Promise.all([
                 getcnae(data.source.ie, app),
                 geolocation(data.source.address, app),
-
-                // inventory(data_nfe, app),
               ]).then(function (values) {
-                // console.log(values);
                 var result = {
                   msg: 'ok',
                   key: data.chaveNFe,
@@ -32,7 +31,8 @@ module.exports = function (app) {
                 };
                 result.data.source.cnae = values[0];
                 result.data.source.address.location = values[1];
-                app.models.nfe.create(result);
+                Inventory(app).saveNfe(result);
+
                 console.log('Crawling nfe ' + result.key);
                 res.json(result);
               }).catch(function (err) {

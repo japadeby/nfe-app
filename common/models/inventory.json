@@ -1,0 +1,24 @@
+{
+  "name": "inventory",
+  "plural": "inventories",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "ean": {
+      "type": "string"
+    },
+    "ncm": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

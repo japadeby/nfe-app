@@ -64,5 +64,9 @@
     "public": true,
     "$promise": {},
     "$resolved": true
+  },
+  "inventory": {
+    "dataSource": "couch",
+    "public": true
   }
 }
