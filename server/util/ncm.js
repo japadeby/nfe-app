@@ -3,9 +3,7 @@ var request = require('request'),
     iconv  = require('iconv-lite'),
     Promise = require('bluebird');
 
-
 var Ncm = (function () {
-  var url = 'http://www.qualncm.com.br/consultancmporproduto.asp';
   function search(ncm) {
     var options = {
       url: 'http://www.qualncm.com.br/consultancmporproduto.asp',
@@ -19,7 +17,7 @@ var Ncm = (function () {
             $ = cheerio.load(decodedBody),
             descriptionSelector = "a[href*='ncm/" + ncm + "']",
             description = $(descriptionSelector).eq(1).text();
-        
+
         return resolve(description);
       });
     });
