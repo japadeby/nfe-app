@@ -16,7 +16,7 @@ module.exports = function (app) {
       res.json({ msg: validation });
     } else {
       app.models.nfe.find({ where: { key: key } }, function (err, nfe) {
-        if (nfe.length === 0) {
+        if (1) {
           crawlerSefaz(key, function (err, data) {
             if (data) {
               Promise.all([
