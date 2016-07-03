@@ -32,17 +32,19 @@ module.exports = function (app) {
                 companyData.address.coordinates = values[1];
 
                 Inventory(app)
-                  .saveNfe(result)
-                  .then(function (response) {
+                  .normalizeNfe(result)
+                  .then(function (normalizedNfe) {
                     var Company = app.models.company;
                     Company.findOrCreate(
                       {where: {cnpj: companyData.cnpj}},
                       companyData,
                       function(err, instance) {
-                        console.log(response.key);
-                        instance.nfes.create(response, function (err, nfeInstance) {
-                          console.log(nfeInstance);
-                        });
+                        if (err) {
+                          console.log(err);
+                        }
+                        else {
+                          instance.nfes.create(normalizedNfe);
+                        }
                       }
                     );
                   });

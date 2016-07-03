@@ -22,7 +22,7 @@ var Inventory = function (app) {
     setProducts(nfe.data.order);
   }
 
-  function saveNfe(nfe) {
+  function normalizeNfe(nfe) {
     return new Promise(function (resolve, reject) {
       loadData(nfe);
       async.eachSeries(products, function(item, callback) {
@@ -77,7 +77,7 @@ var Inventory = function (app) {
   }
 
   return {
-    saveNfe: saveNfe
+    normalizeNfe: normalizeNfe
   };
 };
 
