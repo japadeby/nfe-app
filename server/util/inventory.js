@@ -23,19 +23,17 @@ var Inventory = function (app) {
   }
 
   function saveNfe(nfe) {
-    loadData(nfe);
-    async.eachSeries(products, function(item, callback) {
-      async.waterfall([
-        async.apply(setInventoryData, item),
-        findOrCreateInventory
-      ], function () {
-        callback();
-      });
-    }, function (err) {
-      app.models.nfe.create(nfe, function (err) {
-        if (err) {
-          console.log(err);
-        }
+    return new Promise(function (resolve, reject) {
+      loadData(nfe);
+      async.eachSeries(products, function(item, callback) {
+        async.waterfall([
+          async.apply(setInventoryData, item),
+          findOrCreateInventory
+        ], function () {
+          callback();
+        });
+      }, function (err) {
+        return resolve(nfe);
       });
     });
   }

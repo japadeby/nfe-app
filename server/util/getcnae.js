@@ -28,7 +28,7 @@ function getcnae(id, app) {
         var cnaeCode = $('table:nth-child(3) p:nth-child(7) ' +
                       'table:nth-child(2) td:nth-child(2) font').text()
                       .replace('(ICMS)', '').trim().split(/ - /)[0];
-        app.models.cnae.findOne({where: {"data": {"code": cnaeCode}}}, function (err, response) {
+        app.models.Cnae.findOne({where: {"data": {"code": cnaeCode}}}, function (err, response) {
           if (false) {
             return resolve(response.data);
           } else {
@@ -39,9 +39,10 @@ function getcnae(id, app) {
                 category: '',
               },
             };
-            app.models.cnae.create(cnae, function (err, instance) {
-              return resolve(cnae.data);
-            });
+            return resolve(cnae.data);
+            // app.models.Cnae.create(cnae, function (err, instance) {
+            //   return resolve(cnae.data);
+            // });
           }
         });
       }

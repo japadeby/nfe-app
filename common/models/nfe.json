@@ -3,7 +3,7 @@
   "plural": "nfes",
   "base": "PersistedModel",
   "strict": false,
-  "idInjection": false,
+  "idInjection": true,
   "options": {
     "validateUpsert": true
   },
@@ -17,22 +17,12 @@
       "required": true
     }
   },
-  "indexes": {
-    "keyUniqueIndex": {
-      "keys": {
-        "key": 1
-      },
-      "options": {
-        "unique": true
-      }
-    }
-  },
   "validations": [],
   "relations": {
-    "customer": {
+    "cnae": {
       "type": "belongsTo",
-      "model": "Customer",
-      "foreignKey": "customerId"
+      "model": "cnae",
+      "foreignKey": "cnaeId"
     }
   },
   "acls": [

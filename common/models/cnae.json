@@ -3,11 +3,20 @@
   "plural": "cnaes",
   "base": "PersistedModel",
   "strict": false,
-  "idInjection": false,
-  "options": {
-    "validateUpsert": true
+  "idInjection": true,
+  "properties": {
+      "code": "string",
+      "name": "string"
   },
-  "properties": {},
+  "options": {
+    "relations": {
+      "nfes": {
+        "type": "hasMany",
+        "model": "nfe",
+        "foreignKey": "cnaeId"
+      }
+    }
+  },
   "validations": [],
   "relations": {},
   "acls": [],

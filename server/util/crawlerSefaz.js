@@ -93,7 +93,7 @@ function crawlerSefaz(id, callback) {
         source:{
           name: $('#Emitente').find('span').eq(0).text().trim(),
           fantasy: $('#Emitente').find('span').eq(1).text(),
-          id: $('#Emitente').find('span').eq(2).text(),
+          cnpj: $('#Emitente').find('span').eq(2).text(),
           ie: $('#Emitente').find('span').eq(10).text(),
           crt: $('#Emitente').find('span').eq(15).text(),
           address: {

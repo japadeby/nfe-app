@@ -16,7 +16,7 @@ module.exports = function (app) {
       res.json({ msg: validation });
     } else {
       app.models.nfe.find({ where: { key: key } }, function (err, nfe) {
-        if (1) {
+        if (nfe.length === 0) {
           crawlerSefaz(key, function (err, data) {
             if (data) {
               Promise.all([
@@ -24,14 +24,27 @@ module.exports = function (app) {
                 geolocation(data.source.address, app),
               ]).then(function (values) {
                 var result = {
-                  msg: 'ok',
                   key: data.chaveNFe,
-                  source: [data.source.name, data.source.fantasy].join(', '),
                   data: data,
                 };
-                result.data.source.cnae = values[0];
-                result.data.source.address.location = values[1];
-                Inventory(app).saveNfe(result);
+                cnaeData = data.source;
+                cnaeData.address.coordinates = values[1];
+
+                Inventory(app)
+                  .saveNfe(result)
+                  .then(function (response) {
+                    var Cnae = app.models.cnae;
+                    Cnae.findOrCreate(
+                      {where: {cnpj: cnaeData.cnpj}},
+                      cnaeData,
+                      function(err, instance) {
+                        console.log(response.key);
+                        instance.nfes.create(response, function (err, n) {
+                          console.log(n);
+                        });
+                      }
+                    );
+                  });
 
                 console.log('Crawling nfe ' + result.key);
                 res.json(result);

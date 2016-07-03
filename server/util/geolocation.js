@@ -13,7 +13,7 @@ function geolocation(address, app) {
     'brasil',
   ].join(', ').toLowerCase();
   return new Promise(function (resolve, reject) {
-    app.models.address.findOne({where: {"name":address}})
+    app.models.address.findOne({ where: { 'description': address } })
     .then(function (response) {
       if (response !== null) {
         return resolve(response.location);
@@ -21,18 +21,15 @@ function geolocation(address, app) {
         geocoder.geocode(address)
         .then(function (res) {
           if (res[0] !== undefined) {
-            var location = {
-              type:'Point',
-              coordinates:[
-                res[0].latitude,
-                res[0].longitude,
-              ],
+            var coordinates = {
+              lat: res[0].latitude,
+              long: res[0].longitude
             };
-            app.models.address.create({
-              name: address,
-              location: location,
-            });
-            return resolve(location);
+            var location = {
+              description: address,
+              coordinates: coordinates,
+            }
+            return resolve(coordinates);
           }
         });
       }

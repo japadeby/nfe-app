@@ -1,3 +1,3 @@
 module.exports = function(Cnae) {
-  Cnae.validatesUniquenessOf("data", {message: 'cna already exists.'});
+  Cnae.validatesUniquenessOf("cnpj", {message: 'cna already exists.'});
 };
