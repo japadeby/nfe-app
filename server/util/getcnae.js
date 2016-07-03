@@ -28,21 +28,15 @@ function getcnae(id, app) {
         var cnaeCode = $('table:nth-child(3) p:nth-child(7) ' +
                       'table:nth-child(2) td:nth-child(2) font').text()
                       .replace('(ICMS)', '').trim().split(/ - /)[0];
-        app.models.Cnae.findOne({where: {"data": {"code": cnaeCode}}}, function (err, response) {
-          if (false) {
-            return resolve(response.data);
+        app.models.Company.findOne({where: {"cnae": {"code": cnaeCode}}}, function (err, response) {
+          if (response) {
+            return resolve(response.cnae);
           } else {
             var cnae = {
-              data: {
-                code: cnaeCode,
-                name: cnaeField,
-                category: '',
-              },
+              code: cnaeCode,
+              name: cnaeField,
             };
-            return resolve(cnae.data);
-            // app.models.Cnae.create(cnae, function (err, instance) {
-            //   return resolve(cnae.data);
-            // });
+            return resolve(cnae);
           }
         });
       }

@@ -1,6 +1,6 @@
 {
-  "name": "cnae",
-  "plural": "cnaes",
+  "name": "company",
+  "plural": "companies",
   "base": "PersistedModel",
   "strict": false,
   "idInjection": true,
@@ -13,7 +13,7 @@
       "nfes": {
         "type": "hasMany",
         "model": "nfe",
-        "foreignKey": "cnaeId"
+        "foreignKey": "companyId"
       }
     }
   },

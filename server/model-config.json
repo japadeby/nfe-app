@@ -53,7 +53,7 @@
     "$promise": {},
     "$resolved": true
   },
-  "cnae": {
+  "company": {
     "dataSource": "couch",
     "public": true,
     "$promise": {},

@@ -27,20 +27,21 @@ module.exports = function (app) {
                   key: data.chaveNFe,
                   data: data,
                 };
-                cnaeData = data.source;
-                cnaeData.address.coordinates = values[1];
+                companyData = data.source;
+                companyData.cnae = values[0];
+                companyData.address.coordinates = values[1];
 
                 Inventory(app)
                   .saveNfe(result)
                   .then(function (response) {
-                    var Cnae = app.models.cnae;
-                    Cnae.findOrCreate(
-                      {where: {cnpj: cnaeData.cnpj}},
-                      cnaeData,
+                    var Company = app.models.company;
+                    Company.findOrCreate(
+                      {where: {cnpj: companyData.cnpj}},
+                      companyData,
                       function(err, instance) {
                         console.log(response.key);
-                        instance.nfes.create(response, function (err, n) {
-                          console.log(n);
+                        instance.nfes.create(response, function (err, nfeInstance) {
+                          console.log(nfeInstance);
                         });
                       }
                     );

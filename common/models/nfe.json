@@ -19,10 +19,10 @@
   },
   "validations": [],
   "relations": {
-    "cnae": {
+    "company": {
       "type": "belongsTo",
-      "model": "cnae",
-      "foreignKey": "cnaeId"
+      "model": "company",
+      "foreignKey": "companyId"
     }
   },
   "acls": [
