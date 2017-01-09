@@ -8,7 +8,8 @@ module.exports = function (app) {
 
   app.get('/crawler/:key', function (req, res) {
     var key = req.params.key;
-    var validation = validateNfe(key);
+    // var validation = validateNfe(key);
+    var validation = 'OK';
     if (validation !== 'OK') {
       console.error(validation);
       res.json({ msg: validation });

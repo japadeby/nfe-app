@@ -115,5 +115,5 @@ angular.module(
     },
   });
 
-  $urlRouterProvider.otherwise('/app/nfes');
+  $urlRouterProvider.otherwise('/login');
 });
